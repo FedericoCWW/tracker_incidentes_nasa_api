@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Map from "./componentes/Map";
+import Cargando, { LineSimpleWithLabelDemo } from "./componentes/Cargando";
 
 function App() {
   const [eventData, setEventData] = useState([]);
@@ -8,24 +9,44 @@ function App() {
   useEffect(() => {
     const fetchEvents = async () => {
       setLoading(true);
-      const res = await fetch(
-        "https://eonet.gsfc.nasa.gov/api/v3/events?limit=20"
-      );
-      const data = await res.json();
-      setEventData(data);
-      setLoading(false);
+      try {
+        const res = await fetch("https://eonet.gsfc.nasa.gov/api/v3/events?limit=20");
+        const data = await res.json();
+        console.log("API Response:", data);
+        
+        setEventData(data.events || []);
+      } catch (error) {
+        console.error("Error fetching events:", error);
+      } finally {
+        setLoading(false);
+      }
     };
 
     fetchEvents();
   }, []);
 
-  useEffect(() => {
-    console.log("Event data updated:", eventData);
-  }, [eventData]);
   return (
-    <div className="App">
-      { !loading ? <Map eventData={eventData}/> : <h1>Cargando...</h1>}
+    <div className="App" style={{ position: 'relative', height: '100vh' }}>
+      {/* Map is always rendered */}
+      <Map eventData={eventData} />
       
+      {/* Loading overlay */}
+      {loading && (
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'rgba(255, 255, 255, 0.8)',
+          zIndex: 1000
+        }}>
+          <Cargando />
+        </div>
+      )}
     </div>
   );
 }
