@@ -10,10 +10,8 @@ function App() {
     const fetchEvents = async () => {
       setLoading(true);
       try {
-        const res = await fetch("https://eonet.gsfc.nasa.gov/api/v3/events?limit=20");
-        const data = await res.json();
-        console.log("API Response:", data);
-        
+        const res = await fetch("https://eonet.gsfc.nasa.gov/api/v3/events?category=wildfires");
+        const data = await res.json();        
         setEventData(data.events || []);
       } catch (error) {
         console.error("Error fetching events:", error);
