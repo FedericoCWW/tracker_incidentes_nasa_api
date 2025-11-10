@@ -7,7 +7,7 @@ const  UbicacionInfo = ({ info }) => {
             <li><strong>ID: </strong> {info.id}</li>
             <li><strong>Titulo: </strong> {info.title}</li>
             <li><strong>Fecha: </strong> {info.date}</li>
-            <li><strong>Magnitud: </strong> {info.magnitudvalue} {info.magnitudunidad}</li>
+            <li><strong>Url: </strong> <a href={info.url} target="_blank">{info.url}</a></li>
         </ul>
     </div>
   )
