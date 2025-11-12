@@ -1,27 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap");
 body {
   margin: 0;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Noto Sans Mono", monospace;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #0b1d51;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
-.map{
+.map {
   width: 100vw;
-  height: 100vh;
+  height: 90vh;
   position: relative;
 }
 
-.location-icon{
+.location-icon {
   font-size: 2.5rem;
   color: red;
 }
 
-.ubicacion-info{
+.ubicacion-info {
   position: absolute;
   top: 50px;
   right: 100px;
@@ -29,24 +35,47 @@ code {
   padding: 8px;
   background-color: rgba(58, 58, 58, 0.8);
   border-radius: 10px;
-  font-size: 22px;
+  font-size: 20px;
   border: 5px solid #000000;
   color: white;
 }
 
-.ubicacion-info ul{
+.ubicacion-info ul {
   list-style: none;
   padding: 0;
 }
 
-.ubicacion-info li{
+.ubicacion-info li {
   padding: 5px;
 }
 
-.ubicacion-info h2{
+.ubicacion-info h2 {
   text-align: center;
+  margin: 0;
 }
 
-.ubicacion-info li a{
+.ubicacion-info li a {
   color: white;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  max-width: 100%;
+  box-sizing: border-box;
+  color: white;
+  font-size: 20px;
+  font-weight: 200;
+}
+
+.footer h2 {
+  margin: 15px;
+}
+
+.footer h4 {
+  max-width: 1000px;
+  margin: 0 auto;
+  line-height: 1.5;
+  text-align: justify;
+  text-align-last: center;
 }

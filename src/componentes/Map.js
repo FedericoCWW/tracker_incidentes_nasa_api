@@ -11,13 +11,19 @@ const SOUTH_AMERICA_BOUNDS = {
   east: -34.0
 };
 
+// Convert bounds to Google Maps format
+const southAmericaGoogleBounds = {
+  ne: { lat: SOUTH_AMERICA_BOUNDS.north, lng: SOUTH_AMERICA_BOUNDS.east },
+  sw: { lat: SOUTH_AMERICA_BOUNDS.south, lng: SOUTH_AMERICA_BOUNDS.west }
+};
+
 const Map = ({ eventData, center, zoom }) => {
   const mapCenter = center || {
-    lat: -34.607613,
-    lng: -58.4515826,
+    lat: -20.0, // More centered in South America
+    lng: -60.0,
   };
 
-  const mapZoom = zoom || 6;
+  const mapZoom = zoom || 4;
   const [ubicacionInfo, setUbicacionInfo] = useState(null);
   
   // Optimized markers with useMemo
@@ -56,14 +62,29 @@ const Map = ({ eventData, center, zoom }) => {
           />
         );
       });
-  }, [eventData]); // Only recalculate when eventData changes
+  }, [eventData]);
 
   return (
     <div className="map">
+      {console.log("api key: " + process.env.REACT_APP_API_KEY)}
       <GoogleMapReact
-        bootstrapURLKeys={{ key: "AIzaSyBphAZqTorrsxN0H3F8hVDY87t2iB6ozdU" }}
+        bootstrapURLKeys={{ key: process.env.REACT_APP_API_KEY }}
         defaultCenter={mapCenter}
         defaultZoom={mapZoom}
+        options={{
+          // Restrict map to South America bounds
+          restriction: {
+            latLngBounds: southAmericaGoogleBounds,
+            strictBounds: true
+          },
+          // Optional: Disable zooming out too far
+          minZoom: 3,
+          maxZoom: 15,
+          // Optional: Disable map type controls that might show other areas
+          mapTypeControl: false,
+          streetViewControl: false,
+          fullscreenControl: false
+        }}
       >
         {marcadores}
       </GoogleMapReact>

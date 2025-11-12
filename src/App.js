@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Map from "./componentes/Map";
 import Cargando, { LineSimpleWithLabelDemo } from "./componentes/Cargando";
+import Footer from "./componentes/Footer";
 
 function App() {
   const [eventData, setEventData] = useState([]);
@@ -24,11 +25,10 @@ function App() {
   }, []);
 
   return (
+
     <div className="App" style={{ position: 'relative', height: '100vh' }}>
-      {/* Map is always rendered */}
       <Map eventData={eventData} />
       
-      {/* Loading overlay */}
       {loading && (
         <div style={{
           position: 'absolute',
@@ -43,9 +43,12 @@ function App() {
           zIndex: 1000
         }}>
           <Cargando />
+          
         </div>
       )}
+      <Footer />
     </div>
+    
   );
 }
 
