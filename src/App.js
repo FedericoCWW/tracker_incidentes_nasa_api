@@ -11,8 +11,10 @@ function App() {
     const fetchEvents = async () => {
       setLoading(true);
       try {
-        const res = await fetch("https://eonet.gsfc.nasa.gov/api/v3/events?category=wildfires");
-        const data = await res.json();        
+        const res = await fetch(
+          "https://eonet.gsfc.nasa.gov/api/v3/events?category=wildfires"
+        );
+        const data = await res.json();
         setEventData(data.events || []);
       } catch (error) {
         console.error("Error fetching events:", error);
@@ -25,30 +27,39 @@ function App() {
   }, []);
 
   return (
+    <div
+      className="App"
+      style={{
+        position: "relative",
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      <div style={{ flex: 1 }}>
+        <Map eventData={eventData} />
 
-    <div className="App" style={{ position: 'relative', height: '100vh' }}>
-      <Map eventData={eventData} />
-      
-      {loading && (
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          backgroundColor: 'rgba(255, 255, 255, 1)',
-          zIndex: 1000
-        }}>
-          <Cargando />
-          
-        </div>
-      )}
+        {loading && (
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "rgba(255, 255, 255, 1)",
+              zIndex: 1000,
+            }}
+          >
+            <Cargando />
+          </div>
+        )}
+      </div>
       <Footer />
     </div>
-    
   );
 }
 
