@@ -34,6 +34,7 @@ function App() {
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
+        alignItems: "center"
       }}
     >
       <div style={{ flex: 1 }}>
@@ -52,6 +53,7 @@ function App() {
               alignItems: "center",
               backgroundColor: "rgba(255, 255, 255, 1)",
               zIndex: 1000,
+              
             }}
           >
             <Cargando />

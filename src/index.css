@@ -17,8 +17,8 @@ code {
 }
 
 .map {
-  width: 100vw;
-  height: 90vh;
+  width: 98vw;
+  height: 100vh;
   position: relative;
 }
 
@@ -29,13 +29,13 @@ code {
 
 .ubicacion-info {
   position: absolute;
-  top: 50px;
-  right: 100px;
+  top: 20px;
+  right: 50px;
   min-width: 400px;
   padding: 8px;
   background-color: rgba(58, 58, 58, 0.8);
   border-radius: 10px;
-  font-size: 20px;
+  font-size: 14px;
   border: 5px solid #000000;
   color: white;
 }
